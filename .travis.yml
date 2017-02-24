@@ -7,12 +7,16 @@ cache:
   directories:
   - env
 
+env:
+  global:
+  - FLASK_COVERAGE=1
+
 install:
 - pip install -r ./requirements/dev.txt
 - pip install coveralls
 
 script:
-- coverage run manage.py test
+- python manage.py test
 
 after_success:
 - coveralls

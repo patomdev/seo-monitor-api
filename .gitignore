@@ -39,6 +39,7 @@ Icon*
 .pytest
 .coverage
 .coverage.*
+!.coverage.rc
 /htmlcov
 /xmlreport
 /pyunit.xml

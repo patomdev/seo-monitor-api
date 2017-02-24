@@ -1,6 +1,6 @@
 # Server
-flask==0.12
-pymongo
+flask
+pymongo==3.4.0
 webargs
 
 # Deployment

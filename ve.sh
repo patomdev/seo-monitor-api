@@ -2,4 +2,4 @@
 # Alias to virtualfish env crated by:
 # vf new seoMonitorApi; which python
 
-vf activate seoMonitorApi
+vf activate seoMonitorApicoverage

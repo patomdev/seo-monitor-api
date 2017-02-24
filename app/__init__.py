@@ -1,3 +1,10 @@
+import sys
+
+PYTHON_VERSION = 3, 5
+
+if sys.version_info < PYTHON_VERSION:  # pragma: no cover (manual test)
+    exit("Python {}.{}+ is required.".format(*PYTHON_VERSION))
+
 import logging
 from flask import Flask
 from config import config

@@ -1,14 +1,17 @@
 import logging
-from flask import Flask
+import pymongo
+from flask import Flask, g
 
 from . import endpoints
 
-def create_app(config):
+
+def create_app(config_name):
     app = Flask(__name__)
-    app.config.from_object(config)
+    app.config.from_object(config_name)
+
+
 
     configure_logging(app)
-
     register_endpoints(app)
 
     return app

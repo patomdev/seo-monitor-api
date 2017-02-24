@@ -1,6 +1,6 @@
 # Server
 flask
-pymongo
+pymongo==3.4.0
 webargs
 
 # Deployment

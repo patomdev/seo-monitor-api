@@ -1,7 +1,7 @@
 import os
 
 class Config:
-    '''Basic configuration'''
+    """Basic configuration"""
     ENV = None
 
     PATH = os.path.abspath(os.path.dirname(__file__))
@@ -9,7 +9,7 @@ class Config:
     DEBUG = False
     THREADED = False
 
-    '''Mongo configuration'''
+    """Mongo configuration"""
     MONGODB_HOST = os.getenv('MONGODB_HOST', 'localhost')
     MONGODB_PORT = os.getenv('MONGODB_PORT', 27017)
     MONGODB_DB = os.getenv('MONGODB_DB', 'your_db')

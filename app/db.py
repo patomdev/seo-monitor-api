@@ -4,9 +4,12 @@ from flask import current_app as app
 
 def get_db():
     if not hasattr(g, 'conn'):
+
+        print(app.config)
+
         g.conn = pymongo.MongoClient(
             app.config['MONGODB_HOST'],
-            app.config['MONGODB_PORT']
+            int(app.config['MONGODB_PORT'])
         )
 
     if not hasattr(g, 'db'):

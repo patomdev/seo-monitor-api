@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from webargs import fields, flaskparser
-from api.db import get_db
+from app.db import get_db
 
 blueprint = Blueprint('sitemaps', __name__, url_prefix='/api/sitemap/')
 

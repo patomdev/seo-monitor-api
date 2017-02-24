@@ -7,6 +7,10 @@ cache:
   directories:
   - env
 
+env:
+  global:
+  - FLASK_COVERAGE=1
+
 install:
 - pip install -r ./requirements/dev.txt
 - pip install coveralls

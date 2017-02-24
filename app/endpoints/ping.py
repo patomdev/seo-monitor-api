@@ -4,4 +4,4 @@ blueprint = Blueprint('ping', __name__)
 
 @blueprint.route("/ping")
 def get():
-    return jsonify({'msg': 'ok'})
+    return jsonify({'msg': 'ok'}), 200

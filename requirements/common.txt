@@ -1,7 +1,7 @@
 # Server
-flask
+flask==0.12
 pymongo==3.4.0
-webargs
+webargs==1.5.3
 
 # Deployment
 Flask-Script

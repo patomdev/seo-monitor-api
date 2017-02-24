@@ -5,4 +5,4 @@ webargs
 
 # Deployment
 Flask-Script
-gunicorn
+gunicorn==19.6.0

@@ -37,12 +37,9 @@ class DevConfig(Config):
 
     DEBUG = True
 
-def get_config(name):
-    assert name, "No configuration specified"
-
-    for config in Config.__subclasses__():
-        if config.ENV == name:
-            return config
-
-    assert False, "No matching configuration: {}".format(name)
-
+config = {
+    'development': DevConfig,
+    'testing': TestConfig,
+    'production': ProdConfig,
+    'default': DevConfig
+}

@@ -1,5 +1,5 @@
 # Server
-flask
+flask==0.12
 pymongo
 webargs==1.5.3
 

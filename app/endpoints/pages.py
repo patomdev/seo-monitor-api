@@ -3,7 +3,11 @@ from webargs import fields, flaskparser
 from app.db import get_db
 from .. import __version__
 
-blueprint = Blueprint('sitemaps', __name__, url_prefix='/' + __version__ + '/sitemaps/')
+blueprint = Blueprint(
+    'pages',
+    __name__,
+    url_prefix='/' + __version__ + '/pages/'
+)
 
 FILTER = {
     'url': fields.Str(required=True),
@@ -19,7 +23,7 @@ def get(id):
 @flaskparser.use_kwargs(FILTER)
 def post(url, title):
     db = get_db()
-    db['posts'].insert_one({'url': url, 'title': title})
+    db['pages'].insert_one({'url': url, 'title': title})
 
     return jsonify({'status': 'ok'}), 201
 

@@ -36,4 +36,4 @@ def configure_logging(app):
 
 def register_endpoints(app):
     app.register_blueprint(endpoints.root.blueprint)
-    app.register_blueprint(endpoints.sitemaps.blueprint)
+    app.register_blueprint(endpoints.pages.blueprint)

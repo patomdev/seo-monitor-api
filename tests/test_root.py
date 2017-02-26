@@ -23,7 +23,7 @@ class ApiRootTestCase(unittest.TestCase):
                                    content_type='application/json'))
         expect(status) == 200
         expect(data == {
-           'sitemaps': 'http://localhost:5000/v1/sitemaps/',
+           'pages': 'http://localhost:5000/v1/pages/',
            'version': 'v1'
         })
 

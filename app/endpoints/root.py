@@ -9,7 +9,7 @@ blueprint = Blueprint('root', __name__)
 @blueprint.route("/api")
 def get():
     data = dict()
-    data['sitemaps'] = route('sitemaps.get', _external=True)
+    data['pages'] = route('pages.get', _external=True)
     data['version'] = __version__
     return jsonify(data)
 

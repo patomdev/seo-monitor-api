@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
 from webargs import fields, flaskparser
 from bson.json_util import dumps
+from bson.objectid import ObjectId
 from app.db import get_db
 from .. import __version__
 
@@ -15,15 +16,31 @@ FILTER = {
     'title': fields.Str()
 }
 
-@blueprint.route('<int:id>')
+def normalize(siteDoc):
+    return {
+        'id': str(ObjectId(siteDoc['_id'])),
+        'url': siteDoc['url'],
+        'title': siteDoc['title'],
+        'status': siteDoc['status'],
+        'crawled': siteDoc['crawled']
+    }
+
+@blueprint.route('<string:id>')
 @blueprint.route('', defaults={'id': 0})
 def get(id):
-    return jsonify({'id': id})
+    db = get_db()
+    siteDoc = db['sites'].find_one({"_id": ObjectId(id)})
+    site = normalize(siteDoc)
+    return dumps(site)
 
 @blueprint.route('/')
 def get_list():
     db = get_db()
-    sites = db['sites'].find({})
+    sitesCollection = db['sites'].find({})
+    sites = []
+    for doc in db['sites'].find({}):
+        sites.append(normalize(doc))
+
     return dumps(sites)
 
 @blueprint.route('', methods=['POST'])

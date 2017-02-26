@@ -1,5 +1,9 @@
 import sys
 
+__project__ = 'seomonitor'
+__version__ = 'v1'
+VERSION = "{} v{}".format(__project__, __version__)
+
 PYTHON_VERSION = 3, 5
 
 if sys.version_info < PYTHON_VERSION:  # pragma: no cover (manual test)
@@ -31,5 +35,5 @@ def configure_logging(app):
     logging.getLogger('PIL').setLevel(logging.INFO)
 
 def register_endpoints(app):
-     app.register_blueprint(endpoints.ping.blueprint)
-     app.register_blueprint(endpoints.sitemaps.blueprint)
+    app.register_blueprint(endpoints.root.blueprint)
+    app.register_blueprint(endpoints.sitemaps.blueprint)

@@ -1,2 +1,2 @@
-from . import ping
+from . import root
 from . import sitemaps

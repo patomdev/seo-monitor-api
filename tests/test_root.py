@@ -3,8 +3,7 @@ from app import create_app
 from utils import load
 from expecter import expect
 
-
-class ApiSitemapsTestCase(unittest.TestCase):
+class ApiRootTestCase(unittest.TestCase):
     def setUp(self):
         self.app = create_app('testing')
         self.app_context = self.app.app_context()
@@ -15,12 +14,20 @@ class ApiSitemapsTestCase(unittest.TestCase):
         self.app_context.pop()
 
     def test_endpoint_status(self):
-        status, data = load(self.client.get('/v1/sitemaps/123',
+        status, data = load(self.client.get('/api',
                                    content_type='application/json'))
         expect(status == 200)
 
     def test_endpoint_response(self):
-        status, data = load(self.client.get('/v1/sitemaps/123',
+        status, data = load(self.client.get('/api',
                                    content_type='application/json'))
-        expect(data == {'id': 123})
+        expect(status) == 200
+        expect(data == {
+           'sitemaps': 'http://localhost:5000/v1/sitemaps/',
+           'version': 'v1'
+        })
 
+    def test_ping_response(self):
+        status, data = load(self.client.get('/ping',
+                                   content_type='application/json'))
+        expect(data == {'msg': 'ok'})

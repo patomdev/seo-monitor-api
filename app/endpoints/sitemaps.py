@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify
 from webargs import fields, flaskparser
 from app.db import get_db
+from .. import __version__
 
-blueprint = Blueprint('sitemaps', __name__, url_prefix='/api/sitemap/')
+blueprint = Blueprint('sitemaps', __name__, url_prefix='/' + __version__ + '/sitemaps/')
 
 FILTER = {
     'url': fields.Str(required=True),
@@ -10,7 +11,8 @@ FILTER = {
 }
 
 @blueprint.route('<int:id>')
-def get_by_id(id):
+@blueprint.route('', defaults={'id': 0})
+def get(id):
     return jsonify({'id': id})
 
 @blueprint.route('', methods=['POST'])

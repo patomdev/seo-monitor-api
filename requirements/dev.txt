@@ -4,3 +4,4 @@ colorama
 coverage
 httpie
 requests
+expecter

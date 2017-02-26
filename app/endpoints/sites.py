@@ -1,12 +1,13 @@
 from flask import Blueprint, jsonify
 from webargs import fields, flaskparser
+from bson.json_util import dumps
 from app.db import get_db
 from .. import __version__
 
 blueprint = Blueprint(
-    'pages',
+    'sites',
     __name__,
-    url_prefix='/' + __version__ + '/pages/'
+    url_prefix='/' + __version__ + '/sites/'
 )
 
 FILTER = {
@@ -19,11 +20,17 @@ FILTER = {
 def get(id):
     return jsonify({'id': id})
 
+@blueprint.route('/')
+def get_list():
+    db = get_db()
+    sites = db['sites'].find({})
+    return dumps(sites)
+
 @blueprint.route('', methods=['POST'])
 @flaskparser.use_kwargs(FILTER)
 def post(url, title):
     db = get_db()
-    db['pages'].insert_one({'url': url, 'title': title})
+    db['sites'].insert_one({'url': url, 'title': title})
 
     return jsonify({'status': 'ok'}), 201
 

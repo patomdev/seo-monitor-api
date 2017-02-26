@@ -1,3 +1,4 @@
+import pymongo
 from flask import Blueprint, jsonify
 from webargs import fields, flaskparser
 from bson.json_util import dumps
@@ -36,9 +37,8 @@ def get(id):
 @blueprint.route('/')
 def get_list():
     db = get_db()
-    sitesCollection = db['sites'].find({})
     sites = []
-    for doc in db['sites'].find({}):
+    for doc in db['sites'].find({}).sort([{'crawled', pymongo.DESCENDING}]):
         sites.append(normalize(doc))
 
     return dumps(sites)

@@ -11,12 +11,19 @@ if sys.version_info < PYTHON_VERSION:  # pragma: no cover (manual test)
 
 import logging
 from flask import Flask
+from flask_cors import CORS
 from config import config
 from . import endpoints
 
 
 def create_app(config_name):
     app = Flask(__name__)
+    CORS(
+        app,
+        resources={r"/" + __version__ + "/*": {
+            "origins": "*"
+        }}
+    )
     app.config.from_object(config[config_name])
 
     configure_logging(app)

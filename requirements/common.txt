@@ -1,5 +1,6 @@
 # Server
 flask==0.12
+flask-cors
 pymongo==3.4.0
 webargs==1.5.3
 

@@ -1,4 +1,5 @@
 import pymongo
+import os
 from flask import Blueprint, jsonify
 from webargs import fields, flaskparser
 from bson.json_util import dumps
@@ -16,6 +17,8 @@ FILTER = {
     'url': fields.Str(required=True),
     'title': fields.Str()
 }
+
+path = os.path.abspath(os.path.dirname(__file__))
 
 def normalize(siteDoc):
     return {
@@ -50,6 +53,11 @@ def post(url, title):
     db['sites'].insert_one({'url': url, 'title': title})
 
     return jsonify({'status': 'ok'}), 201
+post.__doc__ = """
+Saves new site
+
+swagger_from_file: %s/sites.yaml
+""" % path
 
 @blueprint.route('<int:id>', methods=['PUT'])
 @flaskparser.use_kwargs(FILTER)

@@ -1,0 +1,26 @@
+Saves site
+---
+definitions:
+  - schema:
+      id: Site
+      properties:
+        id:
+         type: string
+         description: the site's name
+parameters:
+  - in: body
+    name: body
+    schema:
+      required:
+        - url
+        - title
+      properties:
+        url:
+          type: string
+          description: crawled url
+        title:
+          type: string
+          description: title of page
+responses:
+  200:
+    description: Data of site

@@ -14,6 +14,7 @@ class Config:
     MONGODB_PORT = os.getenv('MONGODB_PORT', 27017)
     MONGODB_DB = os.getenv('MONGODB_DB', 'your_db')
 
+    SWAGGER_UI_URI = "http://localhost:8080"
 
 class ProdConfig(Config):
     """Production configuration"""

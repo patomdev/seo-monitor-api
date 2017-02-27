@@ -5,3 +5,4 @@ coverage
 httpie
 requests
 expecter
+flask-swagger

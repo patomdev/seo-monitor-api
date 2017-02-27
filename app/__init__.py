@@ -56,7 +56,6 @@ def configure_swagger(app):
     @app.route("/spec")
     def spec():
         swag = swagger(app, from_file_keyword='swagger_from_file')
-        swag['basePath'] = "/v1"
         swag['info']['version'] = "1.0"
         swag['info']['title'] = "My API"
         return jsonify(swag)

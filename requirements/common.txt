@@ -5,4 +5,4 @@ webargs==1.6.1
 
 # Deployment
 Flask-Script==2.0.5
-gunicorn==19.7.1
+gunicorn==20.0.4
